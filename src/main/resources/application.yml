@@ -1,0 +1,28 @@
+server:
+  port: 8081
+management:
+  endpoint:
+    health:
+      enabled: true
+      show-details: always
+    metrics:
+      enabled: true
+    prometheus:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+spring:
+  application:
+    name: service-first
+  boot:
+    admin:
+      client:
+        url: http://127.0.0.1:9082
+benchmark:
+  enabled: true
+  folder: F:/dev/workspace-j11/spikes/monitoring/monitoring-service-first/src/main/resources
+  border:
+    mean:
+    count: 10
