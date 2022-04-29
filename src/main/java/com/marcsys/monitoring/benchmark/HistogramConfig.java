@@ -13,7 +13,7 @@ public class HistogramConfig {
     @Value("${benchmark.border.mean.count:100}")
     private int maxCount;
 
-    @Value("${benchmark.folder}")
+    @Value("${benchmark.folder:log/benchmark}")
     private String metricsFolder;
 
     @Value("${benchmark.enabled:false}")
