@@ -1,13 +1,13 @@
 # com.marcsys.benchmark
-Benchmark repository to allow integrating with HDR Histogram in an easy way.
+Benchmark repository to allow integrating with HDR Histogram in a easy way.
 
 ## Why I write this lib?
-I worked with HDRHistogram few times, for every time I was needed to read the documentation to remember the settings I wanted as well as the commands to convert the created .perf file.
+I worked with HDRHistogram few times, for every time I was needed to read the documentation to remember the settings and the commands to convert .perf file.
 
-For this reason I decide to create this lib which consolidates the main settings I normally use and the commands to carry out the conversation.
+For this reason I decide to create this lib which consolidates the main settings normally used and the instructions to carry out the conversation.
 
 ## How to configure the project
-- Add the dependency on the pom.xml
+- If you **fork/clone** this project, you need to add the dependency on the pom.xml.
   ```xml
   <dependencies>
     <dependency>
@@ -17,8 +17,7 @@ For this reason I decide to create this lib which consolidates the main settings
     </dependency>
   </dependencies>
   ```
-- Configure the application.properties / applications.yml. Without the *benchmark.enabled* configuration 
-the lib will not produce or initialize the HistogramHolder.
+- Configure the **_application.properties / applications.yml_** as bellow. 
   ```yml
   #default value is false
    benchmark:
@@ -33,9 +32,19 @@ the lib will not produce or initialize the HistogramHolder.
         count: 100 # Number of samples (default 100)
   ```
 
+## Default values
+- In order to prevent errors default values are expected for the above configurations.
+```yml
+  benchmark:
+    enable: false
+    folder: log/app_name # Folder where the .perf file will be created (default UNIX-/var/log/app_name Windows-C:\app_name ) 
+    border:
+      mean:
+        count: 100 # Number of samples (default 100)
+  ```
+
 ## How to use
-After configure the lib the use is very easy.
-Include on the method that you want see the statistics the annotation **@Benchmark**;
+With the lib configured properly, it's need to include on top of the method you will monitoring the annotation **@Benchmark**;
 i.e.
 
   ```java
@@ -48,12 +57,12 @@ public void execute(){
   ```
 
 ## Checking the results
-A .perf file should be generated as configurations above with the pattern name
+A **_.perf_** file should be generated as above with the pattern name
 *void_packageName.ClassName.methodName.perf*
 
 The content to the generated file is not human-readable.
 
-```shell
+```txt
 #[Histogram log format version 1.3]
 #[StartTime: 1633286203.972 (seconds since epoch), Sun Oct 03 19:36:43 BST 2021]
 "StartTimestamp","Interval_Length","Interval_Max","Interval_Compressed_Histogram"
@@ -67,11 +76,11 @@ The content to the generated file is not human-readable.
 To convert the file you need to use **org.HdrHistogram.HistogramLogProcessor** class.
 org.HdrHistogram.HistogramLogProcessor is provided by the project [HdrHistogram](https://github.com/HdrHistogram/HdrHistogram).
 
-On this project I included *lib/HdrHistogram.jar*, that allow to execute the bellow steps.
+On this repository I included *lib/HdrHistogram.jar (version 2.1.13)*, that allow to execute the bellow steps.
 
 ```shell
 #On the lib folder
-java -cp HdrHistogram.jar org.HdrHistogram.HistogramLogProcessor -i <absolute_path/myfile.perf> > outfile.hgrm
+java -cp HdrHistogram.jar org.HdrHistogram.HistogramLogProcessor -i absolute_path/myfile.perf > outfile.hgrm
 ```
 The above command you produce a file with a content like below. 
 ```csv
