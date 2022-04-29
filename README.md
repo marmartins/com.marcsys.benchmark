@@ -37,7 +37,7 @@ For this reason I decide to create this lib which consolidates the main settings
 ```yml
   benchmark:
     enable: false
-    folder: log/app_name # Folder where the .perf file will be created (default UNIX-/var/log/app_name Windows-C:\app_name ) 
+    folder: log/benchmark # Folder where the .perf file will be created (default UNIX-/var/log/app_name Windows-C:\app_name ) 
     border:
       mean:
         count: 100 # Number of samples (default 100)
@@ -50,9 +50,12 @@ i.e.
   ```java
 import com.marcsys.monitoring.benchmark.annotations.Benchmark;
 
-@Benchmark
-public void execute(){
-  // Method impletation here
+public class MyClass {
+
+  @Benchmark
+  public void execute() {
+    // Method impletation here
+  }
 }
   ```
 
